@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:flutter/services.dart';
 import 'package:vpn_basic_project/allModels/vpn_configuration.dart';
