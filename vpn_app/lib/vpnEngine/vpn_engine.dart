@@ -6,12 +6,12 @@ import 'package:vpn_basic_project/allModels/vpn_status.dart';
 
 class VpnEngine {
   //native channel
-  static final String eventChannelVpnStage = "VpnStage";
-  static final String eventChannelVpnStatus = "VpnStatus ";
-  static final String methodChannelVpnControl = "VpnControl";
+  static final String eventChannelVpnStage = "vpnStage";
+  static final String eventChannelVpnStatus = "vpnStatus";
+  static final String methodChannelVpnControl = "vpnControl";
 
   // vpn connection stage snapshot
-  static Stream<String> vpnStageSnapshot() =>
+  static Stream<String> snapshotVpnStage() =>
       EventChannel(eventChannelVpnStage).receiveBroadcastStream().cast();
 
   // vpn connection status snapshot
