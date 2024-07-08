@@ -36,10 +36,10 @@ class ControllerHome extends GetxController {
   Color get getRoundVpnButtonColor {
     switch (vpnConnectionState.value) {
       case VpnEngine.vpnDisconnectedNow:
-        return Colors.redAccent;
+        return Colors.green;
 
       case VpnEngine.vpnConnectedNow:
-        return Colors.green;
+        return Colors.redAccent;
 
       default:
         return Colors.orange;
@@ -49,7 +49,7 @@ class ControllerHome extends GetxController {
   String get getRoundVpnButtonText {
     switch (vpnConnectionState.value) {
       case VpnEngine.vpnDisconnectedNow:
-        return "Let's Connect";
+        return "Let's Connect Now";
 
       case VpnEngine.vpnConnectedNow:
         return "Disconnect";

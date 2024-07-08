@@ -40,7 +40,7 @@ extension AppTheme on ThemeData {
   Color get bottomNavigationColor =>
       AppPreferences.isModeDark ? Colors.white12 : Colors.pinkAccent;
   Color get backgroundColor =>
-      AppPreferences.isModeDark ? Colors.white30 : Colors.black38;
+      AppPreferences.isModeDark ? Colors.blueGrey : Colors.black38;
   Color get iconColor =>
       AppPreferences.isModeDark ? Colors.white : Colors.white;
 }

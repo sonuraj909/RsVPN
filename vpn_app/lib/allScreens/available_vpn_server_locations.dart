@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_basic_project/allControllers/controller_vpn_location.dart';
@@ -13,6 +14,7 @@ class AvailableVpnServerLocations extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.redAccent),
@@ -21,7 +23,7 @@ class AvailableVpnServerLocations extends StatelessWidget {
             height: 8,
           ),
           Text(
-            "Gathering Free VPN Locations...",
+            "Finding Free VPN Locations...",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           )
         ],
@@ -57,20 +59,38 @@ class AvailableVpnServerLocations extends StatelessWidget {
     if (vpnLocationController.vpnFreeServerAvailablelist.isEmpty) {
       vpnLocationController.retrieveVpnInformation();
     }
-    return Obx(() => Scaffold(
-          appBar: AppBar(
-            title: Text(
-              "VPN Free Locations {" +
-                  vpnLocationController.vpnFreeServerAvailablelist.length
-                      .toString() +
-                  "}",
+    return Obx(
+      () => Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "Available Locations (" +
+                vpnLocationController.vpnFreeServerAvailablelist.length
+                    .toString() +
+                ")",
+          ),
+        ),
+        floatingActionButton: Padding(
+          padding: EdgeInsets.only(
+            bottom: 10,
+            right: 10,
+          ),
+          child: FloatingActionButton(
+            backgroundColor: Color.fromARGB(169, 106, 106, 106),
+            onPressed: () {
+              vpnLocationController.retrieveVpnInformation();
+            },
+            child: Icon(
+              CupertinoIcons.refresh_circled_solid,
+              color: Colors.redAccent,
             ),
           ),
-          body: vpnLocationController.isLoadingNewLocations.value
-              ? loadingUIWidget()
-              : vpnLocationController.vpnFreeServerAvailablelist.isEmpty
-                  ? noVpnServerFoundUIWidget()
-                  : vpnAvailableServersData(),
-        ));
+        ),
+        body: vpnLocationController.isLoadingNewLocations.value
+            ? loadingUIWidget()
+            : vpnLocationController.vpnFreeServerAvailablelist.isEmpty
+                ? noVpnServerFoundUIWidget()
+                : vpnAvailableServersData(),
+      ),
+    );
   }
 }

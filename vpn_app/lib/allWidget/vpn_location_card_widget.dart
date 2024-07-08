@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_basic_project/allControllers/controller_home.dart';
 import 'package:vpn_basic_project/allModels/vpn_info.dart';
+import 'package:vpn_basic_project/appPreferences/app_preferences.dart';
+import 'package:vpn_basic_project/vpnEngine/vpn_engine.dart';
 
 class VpnLocationCardWidget extends StatelessWidget {
   VpnLocationCardWidget({
@@ -32,12 +34,29 @@ class VpnLocationCardWidget extends StatelessWidget {
 
     return Card(
       elevation: 6,
-      margin: EdgeInsets.symmetric(vertical: sizeScreen.height * 0.01),
+      margin: EdgeInsets.symmetric(
+          vertical: sizeScreen.height * 0.01,
+          horizontal: sizeScreen.height * 0.01),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          homeController.vpnInfo.value = vpnInfo;
+          AppPreferences.VpnInfoObj = vpnInfo;
+          Get.back();
+
+          if (homeController.vpnConnectionState.value ==
+              VpnEngine.vpnConnectedNow) {
+            VpnEngine.stopVpnNow();
+            Future.delayed(
+              Duration(seconds: 3),
+              () => homeController.connectToVpnNow(),
+            );
+          } else {
+            homeController.connectToVpnNow();
+          }
+        },
         borderRadius: BorderRadius.circular(16),
         child: ListTile(
           shape: RoundedRectangleBorder(
@@ -49,7 +68,7 @@ class VpnLocationCardWidget extends StatelessWidget {
               border: Border.all(
                 color: Colors.black12,
               ),
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(3),
             ),
             child: Image.asset(
               "assets/countryFlags/${vpnInfo.countryShortName.toLowerCase()}.png",
