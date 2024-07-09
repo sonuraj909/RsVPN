@@ -28,8 +28,10 @@ class ControllerHome extends GetxController {
           config: configuration);
 
       await VpnEngine.startVpnNow(vpnConfiguration);
+      vpnConnectionState.value = VpnEngine.vpnConnectedNow;
     } else {
       await VpnEngine.stopVpnNow();
+      vpnConnectionState.value = VpnEngine.vpnDisconnectedNow;
     }
   }
 

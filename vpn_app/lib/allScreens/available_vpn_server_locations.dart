@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:vpn_basic_project/allControllers/controller_vpn_location.dart';
 import 'package:vpn_basic_project/allWidget/vpn_location_card_widget.dart';
+import 'package:vpn_basic_project/main.dart';
 
 class AvailableVpnServerLocations extends StatelessWidget {
   AvailableVpnServerLocations({super.key});
@@ -62,6 +63,7 @@ class AvailableVpnServerLocations extends StatelessWidget {
     return Obx(
       () => Scaffold(
         appBar: AppBar(
+          backgroundColor: Theme.of(context).backgroundColor2,
           title: Text(
             "Available Locations (" +
                 vpnLocationController.vpnFreeServerAvailablelist.length

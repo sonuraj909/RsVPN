@@ -14,7 +14,7 @@
     <application
         android:name="${applicationName}"
         android:label="DevVPN"
-        android:icon="@mipmap/devvpn"
+        android:icon="@mipmap/devvpn_dark"
         tools:ignore="AllowBackup">
         
         <!-- For Ads -->

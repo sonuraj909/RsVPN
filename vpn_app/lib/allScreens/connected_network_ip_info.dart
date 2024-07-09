@@ -5,6 +5,7 @@ import 'package:vpn_basic_project/allModels/Ip_info.dart';
 import 'package:vpn_basic_project/allModels/network_ip_info.dart';
 import 'package:vpn_basic_project/allWidget/network_ip_info_widget.dart';
 import 'package:vpn_basic_project/apiVpnGate/api_vpn_gate.dart';
+import 'package:vpn_basic_project/main.dart';
 
 class ConnectedNetworkIpInfo extends StatelessWidget {
   const ConnectedNetworkIpInfo({super.key});
@@ -15,6 +16,7 @@ class ConnectedNetworkIpInfo extends StatelessWidget {
     ApiVpnGate.retrieveIPDetails(ipInformation: ipInfo);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).backgroundColor2,
         title: Text(
           "VPN Info",
         ),
