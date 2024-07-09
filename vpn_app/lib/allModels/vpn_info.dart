@@ -2,10 +2,10 @@ class VpnInfo {
   late final String hostName;
   late final String ip;
   late final String ping;
-  late final String speed;
+  late final int speed;
   late final String countryLongName;
   late final String countryShortName;
-  late final String vpnSessionName;
+  late final int vpnSessionName;
   late final String base64OpenVPNConfigurationData;
 
   VpnInfo({

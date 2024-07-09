@@ -1,4 +1,4 @@
-package com.myapp.vpnapp;
+package com.sonu.devvpn;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

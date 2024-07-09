@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,18 +28,20 @@ class ControllerHome extends GetxController {
           config: configuration);
 
       await VpnEngine.startVpnNow(vpnConfiguration);
+      vpnConnectionState.value = VpnEngine.vpnConnectedNow;
     } else {
       await VpnEngine.stopVpnNow();
+      vpnConnectionState.value = VpnEngine.vpnDisconnectedNow;
     }
   }
 
   Color get getRoundVpnButtonColor {
     switch (vpnConnectionState.value) {
       case VpnEngine.vpnDisconnectedNow:
-        return Colors.redAccent;
+        return Colors.green;
 
       case VpnEngine.vpnConnectedNow:
-        return Colors.green;
+        return Colors.redAccent;
 
       default:
         return Colors.orange;
@@ -50,7 +51,7 @@ class ControllerHome extends GetxController {
   String get getRoundVpnButtonText {
     switch (vpnConnectionState.value) {
       case VpnEngine.vpnDisconnectedNow:
-        return "Let's Connect";
+        return "Let's Connect Now";
 
       case VpnEngine.vpnConnectedNow:
         return "Disconnect";
